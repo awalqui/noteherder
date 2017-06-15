@@ -6,12 +6,11 @@ import NoteList from './NoteList'
 import NoteForm from './NoteForm'
 
 const Main = (props) => {
-  props.notes
   return (
     <div className="Main">
       <Sidebar />
       <NoteList notes={props.notes} />
-      <NoteForm />
+      <NoteForm saveNote={props.saveNote} />
     </div>
   )
 }
