@@ -1,10 +1,10 @@
 import React from 'react'
 
-import './NoteList.css'
+import './Notelist.css'
 
-const NoteList = () => {
+const Notelist = () => {
   return (
-    <div className="NoteList">
+    <div className="Notelist">
       <h3>Notes</h3>
       <ul id="notes">
         <li>
@@ -24,4 +24,4 @@ const NoteList = () => {
   )
 }
 
-export default NoteList
+export default Notelist
