@@ -21,10 +21,18 @@ class App extends Component {
     this.setState({ notes })
   }
 
+  removeNote = (note) => {
+    const notes = {...this.state.notes}
+    delete notes[note.id]
+    this.setState({ notes })
+  }
+
   render() {
     return (
       <div className="App">
-        <Main notes={this.state.notes} saveNote={this.saveNote} />
+        <Main notes={this.state.notes} 
+        saveNote={this.saveNote} 
+        removeNote={this.removeNote}/>
       </div>
     );
   }

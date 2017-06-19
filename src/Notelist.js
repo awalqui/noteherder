@@ -3,7 +3,11 @@ import React from 'react'
 import './NoteList.css'
 import Note from './Note'
 
-const NoteList = ({ notes }) => {
+const NoteList = ({ notes, saveNote, removeNote }) => {
+  const update = (ev) => {
+    notes.name = ev.target.value
+    saveNote(notes)
+  }
   return (
     <div className="NoteList">
       <h3>Notes</h3>
@@ -12,12 +16,17 @@ const NoteList = ({ notes }) => {
           return <Note note={notes[noteId]} key={noteId} />
         })}
       </ul>
-      <button class="remove button alert">
-        <i
-          class="fa fa-trash-o"
-          aria-hidden="true"
-        ></i>
-      </button>
+      <span className="actions">
+        <button 
+        className="remove button alert" 
+        onClick={() => removeNote(notes)}
+        >
+          <i
+            class="fa fa-trash-o"
+            aria-hidden="true"
+          ></i>
+        </button>
+      </span>
     </div>
   )
 }
