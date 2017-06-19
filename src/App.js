@@ -12,6 +12,7 @@ class App extends Component {
 
     this.state = {
       notes: {},
+      uid: null,
     }
   }
 
@@ -29,14 +30,8 @@ class App extends Component {
     if (!note.id) {
       note.id = `note-${Date.now()}`
     }
-    const notes = { ...this.state.notes }
+    const notes = {...this.state.notes}
     notes[note.id] = note
-    this.setState({ notes })
-  }
-
-  removeNote = (note) => {
-    const notes = { ...this.state.notes }
-    delete notes[note.id]
     this.setState({ notes })
   }
 
@@ -52,6 +47,7 @@ class App extends Component {
     auth
       .signOut()
       .then(() => this.setState({ uid: null }))
+    
   }
 
   renderMain = () => {
@@ -73,3 +69,10 @@ class App extends Component {
 }
 
 export default App;
+
+
+
+/*  removeNote = (note) => {
+    const notes = { ...this.state.notes }
+    notes[note.id] = null
+  }*/
