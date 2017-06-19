@@ -4,9 +4,11 @@ import './SignIn.css'
 
 const SignIn = ({ authHandler }) => {
   const authenticate = () => {
-    authHandler({
-      uid: 'dstrus',
-    })
+    auth
+      .signInWithPopup(githubProvider)
+      .then((data) => {
+        authHandler(data.user)
+      })
   }
 
   return (
