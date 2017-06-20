@@ -8,7 +8,7 @@ const app = firebase.initializeApp({
   authDomain: "YOUR-APP.firebaseapp.com",
   databaseURL: "https://YOUR-APP.firebaseio.com",
   projectId: "YOUR-APP",
-  storageBucket: "",
+  storageBucket: "YOUR-STORAGE-BUCKET",
   messagingSenderId: "YOUR MESSAGING SENDER ID"
 })
 
@@ -16,5 +16,6 @@ const db = database(app)
 
 export const auth = app.auth()
 export const githubProvider = new firebase.auth.GithubAuthProvider()
+export const googleProvider = new firebase.auth.GoogleAuthProvider()
 
 export default Rebase.createClass(db)
