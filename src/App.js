@@ -45,20 +45,26 @@ class App extends Component {
   }
 
   saveNote = (note) => {
+    let shouldRedirect = false
     if (!note.id) {
       note.id = `note-${Date.now()}`
+      shouldRedirect = true
     }
-    const notes = {...this.state.notes}
+    const notes = { ...this.state.notes }
     notes[note.id] = note
     this.setState({ notes, currentNote: note })
+    if (shouldRedirect) {
+      this.props.history.push(`/notes/${note.id}`)
+    }
   }
 
   removeNote = (note) => {
-    const notes = {...this.state.notes}
+    const notes = { ...this.state.notes }
     notes[note.id] = null
+    this.resetCurrentNote()
     this.setState(
       { notes },
-      this.resetCurrentNote()
+      this.props.history.push('/notes')
     )
   }
 
@@ -90,12 +96,12 @@ class App extends Component {
     auth
       .signOut()
       .then(
-        () => {
-          this.resetCurrentNote()
-          localStorage.removeItem('uid')
-          this.setState({ uid: null, notes: {} })
-          base.removeBinding(this.ref)
-        }
+      () => {
+        this.resetCurrentNote()
+        localStorage.removeItem('uid')
+        this.setState({ uid: null, notes: {} })
+        base.removeBinding(this.ref)
+      }
       )
   }
 
