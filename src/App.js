@@ -28,11 +28,11 @@ class App extends Component {
     )
   }
 
-getUserFromLocalStorage() {
-  const uid = localStorage.getItem("uid")
-  if (!uid) return
-  this.setState({ uid })
-}
+  getUserFromLocalStorage() {
+    const uid = localStorage.getItem('uid')
+    if (!uid) return
+    this.setState({ uid })
+  }
 
   syncNotes = () => {
     this.ref = base.syncState(
@@ -48,13 +48,13 @@ getUserFromLocalStorage() {
     if (!note.id) {
       note.id = `note-${Date.now()}`
     }
-    const notes = { ...this.state.notes }
+    const notes = {...this.state.notes}
     notes[note.id] = note
     this.setState({ notes, currentNote: note })
   }
 
   removeNote = (note) => {
-    const notes = { ...this.state.notes }
+    const notes = {...this.state.notes}
     notes[note.id] = null
     this.setState(
       { notes },
@@ -90,12 +90,12 @@ getUserFromLocalStorage() {
     auth
       .signOut()
       .then(
-      () => {
-        base.removeBinding(this.ref)
-        this.resetCurrentNote()
-        localStorage.removeItem("uid")
-        this.setState({ uid: null, notes: {} })
-      }
+        () => {
+          this.resetCurrentNote()
+          localStorage.removeItem('uid')
+          this.setState({ uid: null, notes: {} })
+          base.removeBinding(this.ref)
+        }
       )
   }
 
@@ -120,9 +120,9 @@ getUserFromLocalStorage() {
       <div className="App">
         <Switch>
           <Route path="/notes" render={() => (
-            this.signedIn() 
-            ? <Main {...noteData} {...actions} />
-            : <Redirect to="/sign-in" />
+            this.signedIn()
+              ? <Main {...noteData} {...actions} />
+              : <Redirect to="/sign-in" />
           )} />
           <Route path="/sign-in" render={() => (
             !this.signedIn()
